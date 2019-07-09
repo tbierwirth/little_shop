@@ -25,7 +25,7 @@ RSpec.describe 'Destroy Existing Merchant' do
 
       visit "/merchants/#{@brian.id}"
       click_on 'Delete'
-      expect(page).to have_content("This merchant can not be deleted.  One or more items from this merchant is in an order.")
+      expect(page).to have_content("This merchant can not be deleted. One or more items from this merchant is in an order.")
     end
 
   end
