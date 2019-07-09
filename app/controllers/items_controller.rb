@@ -40,7 +40,11 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    @contents = session[:cart]
     if @item.can_destroy?
+      if @contents.present?
+        @contents.delete(@item.id.to_s)
+      end
       Item.destroy(params[:id])
       redirect_to '/items'
     else
