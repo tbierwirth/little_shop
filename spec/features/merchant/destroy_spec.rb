@@ -19,9 +19,23 @@ RSpec.describe 'Destroy Existing Merchant' do
 
     it "I get a flash message if a merchant has items that have been ordered" do
       visit items_path
+
       click_on 'Hippo'
       click_on 'Add To Cart'
+
       visit cart_path
+      
+      click_on 'Checkout'
+
+      expect(current_path).to eq('/order/new')
+
+      fill_in 'Name', with: "Billy Bob"
+      fill_in 'Address', with: "123 Real St"
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: "80210"
+
+      click_button 'Create Order'
 
       visit "/merchants/#{@brian.id}"
       click_on 'Delete'
