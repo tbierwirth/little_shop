@@ -1,5 +1,6 @@
 class Merchant < ApplicationRecord
-  has_many :items
+
+  has_many :items, dependent: :destroy
   validates_presence_of :name
   validates_presence_of :address
   validates_presence_of :city
@@ -16,6 +17,13 @@ class Merchant < ApplicationRecord
 
   def cities_ordered
     items.joins(:orders).distinct.pluck(:city).join(", ")
+  end
+  
+  def self.can_destroy?(merchant)
+    answer = ItemOrder.all.map do |item|
+      Item.find(item.item_id).merchant_id == merchant.id
+    end
+    answer == (false || [])
   end
 
 end
