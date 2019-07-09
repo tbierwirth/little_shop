@@ -1,4 +1,4 @@
-require 'rails_helper'
+ require 'rails_helper'
 
 RSpec.describe 'Existing Merchant Update Flash Message' do
   describe 'As a Visitor' do
