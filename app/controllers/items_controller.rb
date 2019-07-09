@@ -39,9 +39,18 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.destroy(params[:id])
-
-    redirect_to '/items'
+    @item = Item.find(params[:id])
+    @contents = session[:cart]
+    if @item.can_destroy?
+      if @contents.present?
+        @contents.delete(@item.id.to_s)
+      end
+      Item.destroy(params[:id])
+      redirect_to '/items'
+    else
+      flash[:notice] = "This item can not be deleted, it is currently being ordered."
+      redirect_to "/items/#{@item.id}"
+    end
   end
 
   private
