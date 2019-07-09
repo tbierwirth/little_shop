@@ -24,7 +24,7 @@ RSpec.describe 'Destroy Existing Merchant' do
       click_on 'Add To Cart'
 
       visit cart_path
-      
+
       click_on 'Checkout'
 
       expect(current_path).to eq('/order/new')
@@ -40,6 +40,20 @@ RSpec.describe 'Destroy Existing Merchant' do
       visit "/merchants/#{@brian.id}"
       click_on 'Delete'
       expect(page).to have_content("This merchant can not be deleted. One or more items from this merchant is in an order.")
+    end
+
+    it "when a merchant has been deleted then their items are removed from the cart" do
+      visit items_path
+
+      click_on 'Hippo'
+      click_on 'Add To Cart'
+
+      visit "/merchants/#{@brian.id}"
+      click_on 'Delete'
+
+      visit cart_path
+
+      expect(page).to_not have_content(@hippo.name)
     end
 
   end
