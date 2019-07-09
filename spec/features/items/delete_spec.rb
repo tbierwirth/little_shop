@@ -46,6 +46,19 @@ RSpec.describe 'Delete Item' do
         expect(page).to have_content("This item can not be deleted, it is currently being ordered.")
       end
 
+      it "an item is removed from my cart after it is deleted" do
+        visit items_path
+        click_on "Ogre"
+        click_on "Add To Cart"
+
+        visit items_path
+        click_on "Ogre"
+        click_on "Delete"
+
+        visit cart_path
+        expect(page).to_not have_content(@ogre.name)
+      end
+
     end
   end
 end
