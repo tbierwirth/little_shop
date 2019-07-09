@@ -1,8 +1,6 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
-
-
   def create
      item = Item.find(params[:item_id])
      @cart = Cart.new(session[:cart])
