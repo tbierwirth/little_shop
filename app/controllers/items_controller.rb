@@ -21,10 +21,16 @@ class ItemsController < ApplicationController
   end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
+    @merchant = Merchant.find(params[:merchant_id])
+    @item = @merchant.items.new(item_params)
+    if @item.save
+      flash[:notice] = "Creation Sucessful!"
+      redirect_to "/merchants/#{@merchant.id}/items"
+    else
+      flash[:item_error] = @item.errors.full_messages.join(", ")
+      render :new
+    end
 
-    redirect_to "/merchants/#{merchant.id}/items"
   end
 
   def edit
@@ -32,10 +38,16 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      flash[:notice] = "Update Sucessful!"
+      redirect_to "/items/#{@item.id}"
+    else
+      flash[:item_error] = @item.errors.full_messages.join(", ")
+      render :edit
+    end
 
-    redirect_to "/items/#{item.id}"
   end
 
   def destroy
