@@ -26,8 +26,15 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    Merchant.destroy(params[:id])
-    redirect_to '/merchants'
+    @merchant = Merchant.find(params[:id])
+    @contents = session[:cart]
+    if Merchant.can_destroy?(@merchant)
+      Merchant.destroy(params[:id])
+      redirect_to '/merchants'
+    else
+      flash[:notice] = "This merchant can not be deleted. One or more items from this merchant is in an order."
+      render :show
+    end
   end
 
   private
