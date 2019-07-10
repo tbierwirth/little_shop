@@ -31,6 +31,10 @@ class CartsController < ApplicationController
 
   def index
      @contents = session[:cart]
+     @cart_contents = []
+     @contents.each do |item, quantity|
+       @cart_contents.push(Item.find(item))
+     end
   end
 
   def destroy
