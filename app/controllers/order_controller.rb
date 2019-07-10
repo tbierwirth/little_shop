@@ -2,6 +2,10 @@ class OrderController < ApplicationController
 
   def new
     @contents = session[:cart]
+    @cart_contents = []
+    @contents.each do |item, quantity|
+      @cart_contents.push(Item.find(item))
+    end
   end
 
   def create
