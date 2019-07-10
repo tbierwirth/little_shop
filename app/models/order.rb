@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   has_many :item_orders
   has_many :items, through: :item_orders
 
-  def verification_code
-    10.times.map{rand(10)}.join
+  def generate_verification_code
+    self.verification_code = 10.times.map{rand(10)}.join
   end
 end
