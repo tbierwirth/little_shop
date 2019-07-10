@@ -19,6 +19,7 @@ class OrderController < ApplicationController
           price: Item.find(item).price)
       end
       redirect_to "/order/#{@order.id}"
+      reset_session
     else
       flash[:notice] = "Please complete all shipping info"
       redirect_to order_new_path
