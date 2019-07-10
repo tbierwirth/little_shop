@@ -18,12 +18,9 @@ class Merchant < ApplicationRecord
   def cities_ordered
     items.joins(:orders).distinct.pluck(:city).join(", ")
   end
-  
-  def self.can_destroy?(merchant)
-    answer = ItemOrder.all.map do |item|
-      Item.find(item.item_id).merchant_id == merchant.id
-    end
-    answer == (false || [])
+
+  def can_destroy?
+    Merchant.joins(items: [:item_orders]).where(id: self.id).empty?
   end
 
 end
