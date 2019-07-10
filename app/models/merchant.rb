@@ -20,7 +20,8 @@ class Merchant < ApplicationRecord
   end
 
   def can_destroy?
-    Merchant.joins(items: [:item_orders]).empty?
+    binding.pry
+    Merchant.joins(items: [:item_orders]).where(id: self.id).empty?
   end
 
 end
