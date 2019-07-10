@@ -12,7 +12,7 @@ RSpec.describe Merchant do
       @order = Order.create!(name: "Bill", address: "123", city: "Denver", state: "CO", zip: "80210")
       ItemOrder.create!(order_id: @order.id, item_id: @hippo.id, quantity: 1, price: @hippo.price)
 
-      expect(Merchant.can_destroy?(@brian)).to be false
+      expect(@brian.can_destroy?).to be false
     end
 
     it "#count_items" do
