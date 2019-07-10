@@ -9,7 +9,7 @@ RSpec.describe 'New Merchant Item' do
     it 'I can click a link to a new item form page' do
       visit "/merchants/#{@megan.id}/items"
 
-      click_link 'New Item'
+      click_button 'New Item'
 
       expect(current_path).to eq("/merchants/#{@megan.id}/items/new")
     end
