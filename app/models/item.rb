@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   validates_presence_of :inventory
 
   def can_destroy?
-    Item.joins(:item_orders).empty?
+    Item.joins(:item_orders).where(id: self.id).empty?
   end
 
   def top_three_rated
