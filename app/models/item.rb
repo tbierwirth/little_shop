@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :item_orders
   has_many :orders, through: :item_orders
-  
+
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :price
