@@ -86,9 +86,10 @@ RSpec.describe "As a vistor" do
         fill_in 'Zip', with: "80210"
 
         click_button 'Create Order'
-        order = Order.last
-        verification_code = Order.last.verification_code
       end
+
+      let!(:order) { Order.last }
+      let!(:verification_code) { order.verification_code}
 
       it "is seen when an order is placed" do
         expect(page).to have_content(verification_code)
