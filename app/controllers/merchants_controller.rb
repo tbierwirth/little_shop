@@ -40,7 +40,7 @@ class MerchantsController < ApplicationController
   def destroy
     @merchant = Merchant.find(params[:id])
     @contents = session[:cart]
-    if Merchant.can_destroy?(@merchant)
+    if @merchant.can_destroy?
       if @contents.present?
         @merchant.items.each do |item|
           @contents.delete(item.id.to_s)
