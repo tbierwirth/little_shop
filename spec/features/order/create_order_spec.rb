@@ -77,5 +77,58 @@ RSpec.describe "As a vistor" do
       expect(current_path).to eq('/order/new')
     end
 
+    describe "verification code" do
+      before do
+        fill_in 'Name', with: "Billy Bob"
+        fill_in 'Address', with: "123 Real St"
+        fill_in 'City', with: "Denver"
+        fill_in 'State', with: "CO"
+        fill_in 'Zip', with: "80210"
+
+        click_button 'Create Order'
+        order = Order.last
+        verification_code = Order.last.verification_code
+      end
+
+      it "is seen when an order is placed" do
+        expect(page).to have_content(verification_code)
+      end
+
+      it "can be searched to take you to verified order page" do
+        fill_in 'Search', with: verification_code
+        click_button 'Search'
+        expect(current_path).to eq('/verified_order')
+      end
+
+      describe "order verification page" do
+        before do
+          fill_in 'Search', with: verification_code
+          click_button 'Search'
+        end
+
+        it "can delete an order" do
+          click_button 'Delete Order'
+          expect(page).to have_content("Order #{order.id} has been deleted")
+          expect(current_path).to eq('/')
+        end
+
+        it "can update an order" do
+          click_button 'Update Order'
+          expect(current_path).to eq('/verified_order/edit')
+          fill_in 'Address', with: "123 Bean St"
+          click_button 'Save'
+          expect(page).to have_content("123 Bean St")
+        end
+
+        it "can remove item from an order" do
+          within "#item-#{@ogre.id}" do
+            click_button 'Remove Item'
+          end
+          expect(page).to_not have_content(@ogre.name)
+        end
+      end
+    end
+
+
   end
 end
