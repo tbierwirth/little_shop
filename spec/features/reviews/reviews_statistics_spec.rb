@@ -14,7 +14,7 @@ RSpec.describe 'Item Show Page' do
 
       it "user can see top three rated reviews" do
         top_three = [@review1, @review4, @review3]
-        expect(Review.top_three_rated(@giant)).to eq(top_three)
+        expect(@giant.top_three_rated).to eq(top_three)
 
         visit "/items/#{@giant.id}"
 
@@ -36,7 +36,7 @@ RSpec.describe 'Item Show Page' do
 
       it "user can see bottom three rated reviews" do
         bottom_three = [@review2, @review3, @review4]
-        expect(Review.bottom_three_rated(@giant)).to eq(bottom_three)
+        expect(@giant.bottom_three_rated).to eq(bottom_three)
 
         visit "/items/#{@giant.id}"
 
