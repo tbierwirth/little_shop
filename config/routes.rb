@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   delete '/cart', to: 'carts#destroy'
   delete '/cart/:item_id', to: 'carts#remove_item'
 
+  get '/verified_order', to: 'verified_order#show'
+
   get '/order/new', to: 'order#new'
   post '/order', to: 'order#create'
   get '/order/:order_id', to: 'order#show'
