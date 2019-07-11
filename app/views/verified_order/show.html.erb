@@ -6,4 +6,5 @@
   <p>City: <%= @order.city %></p>
   <p>State: <%= @order.state %></p>
   <p>Zip: <%= @order.zip %></p>
+  <%= button_to 'Delete Order', "/verified_order", class: "btn btn-dark btn-sm", method: :delete %>
 </section>
