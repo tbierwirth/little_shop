@@ -29,10 +29,10 @@ RSpec.describe 'Merchant Show Page' do
 
     it 'I see average price of items for that merchant' do
       visit "/merchants/#{@megan.id}"
-      expect(@megan.avg_price_items).to eq(35)
+      expect(number_to_currency(@megan.avg_price_items)).to eq("$35.00")
 
       within "#statistics" do
-        expect(page).to have_content("Average Price of Items: #{@megan.avg_price_items}")
+        expect(page).to have_content("Average Price of Items: #{number_to_currency(@megan.avg_price_items)}")
       end
     end
 

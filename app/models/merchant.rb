@@ -23,4 +23,19 @@ class Merchant < ApplicationRecord
     Merchant.joins(items: [:item_orders]).where(id: self.id).empty?
   end
 
-end
+
+
+  # def self.top_rated_items(merchant)
+  #   @count = merchant.count_items
+  #   incrementer = 0
+  #   Merchant.select('item.id').joins(:item).all
+  #     .all
+  #     @item_ids = Merchant.find(merchant.id).items.all.group(:id)
+  #
+  #
+  #
+  #   while incrementer < @count
+  #       @items << Merchant.find(merchant.id).items.find().reviews.sum(:rating)
+  #       incrementer += 1
+  #   end
+  end

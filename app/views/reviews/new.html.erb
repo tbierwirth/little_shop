@@ -1,13 +1,17 @@
-<%= form_tag "/items/#{@item.id}/" do %>
+<h1>New Review</h1>
+<%= form_tag "/items/#{@item.id}/", method: :post do %>
   <%= label_tag :title %>
+<br>
   <%= text_field_tag :title %>
-
-  <%= label_tag :rating %>
-  <%= number_field_tag :rating %>
-
+<br>
+  <%= label_tag :rating  %>
+<br>
+  <%= number_field_tag :rating, "Enter from 0 - 5", min: 0, max: 5 %>
+<br>
   <%= label_tag :body %>
-  <%= text_field_tag :body %>
-
+<br>
+  <%= text_area_tag :body, "", size: "30x6" %>
+<br>
   <%= submit_tag 'Submit Review' %>
 
 <% end %>
