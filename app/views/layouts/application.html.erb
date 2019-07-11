@@ -32,7 +32,7 @@
       </ul>
     </nav>
     <% flash.each do |type, message| %>
-    <%= content_tag :div, message, class: type %>
+      <%= content_tag :div, message, class: type %>
     <% end %>
     <div class="container-fluid">
       <%= yield %>
