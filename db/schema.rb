@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20190710233807) do
     t.integer "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "verification_code"
+    t.string "verification_code"
   end
 
   create_table "reviews", force: :cascade do |t|
