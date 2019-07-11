@@ -19,13 +19,14 @@ class OrderController < ApplicationController
           price: Item.find(item).price)
       end
       @order.generate_verification_code
-      flash[:code] = "Your order ID is #{@order.verification_code}"
       redirect_to "/order/#{@order.id}"
       reset_session
     else
       flash[:notice] = "Please complete all shipping info"
       redirect_to order_new_path
     end
+    flash[:code] = "Your order ID is #{@order.verification_code}"
+
   end
 
   def show
