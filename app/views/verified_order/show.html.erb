@@ -2,22 +2,27 @@
 <% grand_total = 0 %>
 <section id='shipping'>
   <%= form_tag "/merchants/#{@order.id}", method: :patch do %>
+    <div class="form-group">
     <%= label_tag :name %>
-    <%= text_field_tag :name, @order.name %>
-
+    <%= text_field_tag :name, @order.name, class:"form-control col-md-4" %>
+    </div>
+    <div class="form-group">
     <%= label_tag :address %>
-    <%= text_field_tag :address, @order.address %>
-
+    <%= text_field_tag :address, @order.address, class:"form-control col-md-4" %>
+    </div>
+    <div class="form-group">
     <%= label_tag :city %>
-    <%= text_field_tag :city, @order.city %>
-
+    <%= text_field_tag :city, @order.city, class:"form-control col-md-4" %>
+    </div>
+    <div class="form-group">
     <%= label_tag :state %>
-    <%= text_field_tag :state, @order.state %>
-
+    <%= text_field_tag :state, @order.state, class:"form-control col-md-4" %>
+    </div>
+    <div class="form-group">
     <%= label_tag :zip %>
-    <%= text_field_tag :zip, @order.zip %>
-
-    <%= submit_tag 'Update Order' %>
+    <%= text_field_tag :zip, @order.zip, class:"form-control col-md-4" %>
+    </div>
+    <%= submit_tag 'Update Order', class: "btn btn-dark btn-sm btn-space" %>
   <% end %>
   <%= button_to 'Delete Order', "/verified_order/#{@order.id}", class: "btn btn-dark btn-sm", method: :delete %>
 </section>
