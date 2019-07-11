@@ -115,10 +115,8 @@ RSpec.describe "As a vistor" do
         end
 
         it "can update an order" do
-          click_button 'Update Order'
-          expect(current_path).to eq("/verified_order/#{@order.id}/edit")
           fill_in 'Address', with: "123 Bean St"
-          click_button 'Save'
+          click_button 'Update Order'
           expect(page).to have_content("123 Bean St")
         end
 
