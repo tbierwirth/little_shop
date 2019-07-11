@@ -1,28 +1,24 @@
-
-
-<section id='statistics' style="margin-right: 50%;
-    margin-left: 25%;
-    ">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw" class="card-img-top">
-    <div class="col-lg-4">
-      <div class="card card-space" style="overflow: auto; width: 110em;">
-        <div class="card-body" style="width: 100rem;">
-          <h3 class="card-title"><%= @merchant.name %></h3>
-          <p class="card-text">Number of items: <%=  @merchant.count_items %>   -   Average Price of Items: <%= number_to_currency(@merchant.avg_price_items) %>   -   Cities Ordered From: <%= @merchant.cities_ordered %></p>
-        </div>
-      </div>
+<div class="row justify-content-center">
+  <div class="col-4">
+    <h3><%= @merchant.name %></h3>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw" class="img-thumbnail">
+    <div class="btn-group" role="group">
+      <%= button_to 'Items', "/merchants/#{@merchant.id}/items", class: "btn btn-dark btn-sm btn-space", method: :get %>
+      <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", class: "btn btn-dark btn-sm btn-space", method: :get %>
+      <%= button_to 'Delete', "/merchants/#{@merchant.id}", class: "btn btn-dark btn-sm btn-space", method: :delete %>
     </div>
-</section>
-
-
-
-
-<section class='address'>
-  <h5><%= @merchant.address %></h5>
-  <h5><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h5>
-</section>
-
-
-<%= button_to 'Items', "/merchants/#{@merchant.id}/items", class: "btn btn-dark btn-sm btn-space", method: :get %>
-<%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", class: "btn btn-dark btn-sm btn-space", method: :get %>
-<%= button_to 'Delete', "/merchants/#{@merchant.id}", class: "btn btn-dark btn-sm btn-space", method: :delete %>
+  </div>
+  <div class="col-4">
+      <section class='address'>
+        <h5><%= @merchant.address %></h5>
+        <h5><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h5>
+      </section>
+  </div>
+  <div class="col-4">
+    <section id='statistics'>
+      <p>Number of items: <%= @merchant.count_items %></p>
+      <p>Average Price of Items: <%= number_to_currency(@merchant.avg_price_items) %></p>
+      <p>Cities Ordered From: <%= @merchant.cities_ordered %></p>
+    </section>
+  </div>
+</div>
