@@ -7,10 +7,10 @@
 
   <section id='item-<%= item.id %>'>
 
-    <%= item.name %>
+    <%= link_to item.name, "items/#{item.id}" %>
     <img src="<%="#{item.image}"%>">
     <%= item.merchant.name %>
-    <%= item.price %>
+    <%= number_to_currency(item.price) %>
     <p>Quantity: <%= @contents[item.id.to_s] %></p>
 
         <% if @contents[item.id.to_s] < item.inventory %>
@@ -19,6 +19,8 @@
 
         <% if @contents[item.id.to_s] > 1 %>
         <%= button_to "Remove 1 from Cart", cart_path(item_id: item), method: :patch %>
+        <% elsif @contents[item.id.to_s] = 1 %>
+        <%= button_to "Remove 1 from Cart", "/cart/#{item.id}", method: :delete %>
         <% end %>
 
 
