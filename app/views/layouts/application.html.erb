@@ -32,7 +32,9 @@
       </form>
     </nav>
     <% flash.each do |type, message| %>
-      <%= content_tag :div, message, class: type %>
+      <div class="alert alert-primary" role="alert">
+        <%= message %>
+      </div>
     <% end %>
     <div class="container-fluid">
       <%= yield %>
