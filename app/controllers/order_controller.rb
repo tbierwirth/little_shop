@@ -15,6 +15,7 @@ class OrderController < ApplicationController
           price: Item.find(item).price)
       end
       @order.generate_verification_code
+      flash[:notive] = "Your order ID is #{@order.verification_code}"
       redirect_to "/order/#{@order.id}"
     else
       flash[:notice] = "Please complete all shipping info"
