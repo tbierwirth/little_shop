@@ -7,5 +7,5 @@
   <p>State: <%= @order.state %></p>
   <p>Zip: <%= @order.zip %></p>
   <%= button_to 'Delete Order', "/verified_order/#{@order.id}", class: "btn btn-dark btn-sm", method: :delete %>
-  <%= button_to 'Update Order', "/verified_order/#{@order.id}", class: "btn btn-dark btn-sm", method: :patch %>
+  <%= button_to 'Update Order', "/verified_order/#{@order.id}/edit", class: "btn btn-dark btn-sm" %>
 </section>
