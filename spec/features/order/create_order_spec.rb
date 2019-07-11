@@ -86,6 +86,7 @@ RSpec.describe "As a vistor" do
         fill_in 'Zip', with: "80210"
 
         click_button 'Create Order'
+        @order = Order.last
       end
 
       let!(:order) { Order.last }
@@ -109,13 +110,13 @@ RSpec.describe "As a vistor" do
 
         it "can delete an order" do
           click_button 'Delete Order'
-          expect(page).to have_content("Order #{order.id} has been deleted")
+          expect(page).to have_content("Order #{@order.id} has been deleted")
           expect(current_path).to eq('/')
         end
 
         it "can update an order" do
           click_button 'Update Order'
-          expect(current_path).to eq('/verified_order/edit')
+          expect(current_path).to eq("/verified_order/#{@order.id}/edit")
           fill_in 'Address', with: "123 Bean St"
           click_button 'Save'
           expect(page).to have_content("123 Bean St")
