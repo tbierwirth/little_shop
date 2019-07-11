@@ -28,8 +28,9 @@ Rails.application.routes.draw do
   delete '/cart/:item_id', to: 'carts#remove_item'
 
   get '/verified_order', to: 'verified_order#show'
-  delete '/verified_order/:verified_order_id', to: 'verified_order#destroy'
+  get '/verified_order/:verified_order_id/edit', to: 'verified_order#edit'
   patch '/verified_order/:verified_order_id', to: 'verified_order#update'
+  delete '/verified_order/:verified_order_id', to: 'verified_order#destroy'
 
   get '/order/new', to: 'order#new'
   post '/order', to: 'order#create'
