@@ -38,6 +38,7 @@ RSpec.describe 'New Review Creation' do
       expect(current_path).to eq("/items/#{@giant.id}/reviews/new")
 
       fill_in 'Title', with: "Pretty!"
+      fill_in 'Rating', with: "" 
       fill_in 'Body', with: "I didn't think.  Now I'm stuck with it."
 
       click_button 'Submit Review'

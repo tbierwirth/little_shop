@@ -44,8 +44,11 @@ RSpec.describe "When a user looks at their cart" do
       click_on "Remove 1 from Cart"
       expect(page).to have_content("Quantity: 1")
       #1
-      expect(page).to_not have_button("Remove 1 from Cart")
+      click_on "Remove 1 from Cart"
+
     end
+
+    expect(page).to_not have_content("Ogre")
 
     #Inventory for this item contains 3, test for three iterations
     within "#item-#{item_2.id}" do
@@ -62,8 +65,16 @@ RSpec.describe "When a user looks at their cart" do
       expect(page).to have_button("Remove 1 from Cart")
       click_on "Remove 1 from Cart"
       expect(page).to have_content("Quantity: 1")
-      expect(page).to_not have_button("Remove 1 from Cart")
+      click_on "Remove 1 from Cart"
     end
+
+    expect(page).to_not have_content("Giant")
+
+    expect(page).to have_content("Cart: 0")
+
+    expect(page).to have_content("You have no items in your cart")
+
+
 
   end
 
