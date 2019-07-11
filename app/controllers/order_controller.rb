@@ -18,6 +18,8 @@ class OrderController < ApplicationController
           quantity: quantity,
           price: Item.find(item).price)
       end
+      @order.generate_verification_code
+      flash[:notive] = "Your order ID is #{@order.verification_code}"
       redirect_to "/order/#{@order.id}"
       reset_session
     else
