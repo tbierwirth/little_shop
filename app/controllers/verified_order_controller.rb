@@ -5,8 +5,9 @@ class VerifiedOrderController < ApplicationController
   end
 
   def destroy
+    @order = Order.find(params[:verified_order_id])
     Order.destroy(params[:verified_order_id])
-    flash[:notice] = "Your order has been deleted."
+    flash[:notice] = "Order #{@order.id} has been deleted"
     redirect_to '/'
   end
 
