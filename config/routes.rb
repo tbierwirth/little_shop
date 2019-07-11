@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   get '/verified_order', to: 'verified_order#show'
   delete '/verified_order/:verified_order_id', to: 'verified_order#destroy'
+  patch '/verified_order/:verified_order_id', to: 'verified_order#update'
 
   get '/order/new', to: 'order#new'
   post '/order', to: 'order#create'
