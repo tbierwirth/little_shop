@@ -92,11 +92,6 @@ RSpec.describe "As a vistor" do
       let!(:order) { Order.last }
       let!(:verification_code) { order.verification_code}
 
-      # it "is seen when an order is placed" do
-      #   expect(current_path).to eq("/order/#{@order.id}")
-      #   expect(page).to have_content(verification_code)
-      # end
-
       it "can be searched to take you to verified order page" do
         fill_in 'Search', with: verification_code
         click_button 'Search'

@@ -5,10 +5,6 @@ class VerifiedOrderController < ApplicationController
 
   end
 
-  def edit
-    @order = Order.find(params[:verified_order_id])
-  end
-
   def update
     @order = Order.find(params[:verified_order_id])
     @order.update_attributes(merchant_params)
